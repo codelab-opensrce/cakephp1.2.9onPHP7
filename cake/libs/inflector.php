@@ -127,7 +127,7 @@ class Inflector extends Object {
 		static $instance = array();
 
 		if (!$instance) {
-			$instance[0] =& new Inflector();
+			$instance[0] = new Inflector();
 			if (file_exists(CONFIGS.'inflections.php')) {
 				include(CONFIGS.'inflections.php');
 				$instance[0]->__pluralRules = $pluralRules;
@@ -494,7 +494,7 @@ class Inflector extends Object {
  * @link http://book.cakephp.org/view/572/Class-methods
  */
 	function slug($string, $replacement = '_') {
-		if (!class_exists('String')) {
+		if (!class_exists('CakeText')) {
 			require LIBS . 'string.php';
 		}
 		$map = array(
@@ -514,7 +514,7 @@ class Inflector extends Object {
 			'/ß/' => 'ss',
 			'/[^\w\s]/' => ' ',
 			'/\\s+/' => $replacement,
-			String::insert('/^[:replacement]+|[:replacement]+$/', array('replacement' => preg_quote($replacement, '/'))) => '',
+			CakeText::insert('/^[:replacement]+|[:replacement]+$/', array('replacement' => preg_quote($replacement, '/'))) => '',
 		);
 		return preg_replace(array_keys($map), array_values($map), $string);
 	}

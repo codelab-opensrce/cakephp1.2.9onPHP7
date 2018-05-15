@@ -95,7 +95,7 @@ class Debugger extends Object {
 		static $instance = array();
 		if (!empty($class)) {
 			if (!$instance || strtolower($class) != strtolower(get_class($instance[0]))) {
-				$instance[0] = & new $class();
+				$instance[0] =  new $class();
 				if (Configure::read() > 0) {
 					Configure::version(); // Make sure the core config is loaded
 					$instance[0]->helpPath = Configure::read('Cake.Debugger.HelpPath');
@@ -104,7 +104,7 @@ class Debugger extends Object {
 		}
 
 		if (!$instance) {
-			$instance[0] =& new Debugger();
+			$instance[0] = new Debugger();
 			if (Configure::read() > 0) {
 				Configure::version(); // Make sure the core config is loaded
 				$instance[0]->helpPath = Configure::read('Cake.Debugger.HelpPath');
@@ -563,6 +563,7 @@ class Debugger extends Object {
 }
 
 if (!defined('DISABLE_DEFAULT_ERROR_HANDLING')) {
+	error_reporting(0); //えらー表示無効化
 	Debugger::invoke(Debugger::getInstance());
 }
 ?>

@@ -145,7 +145,7 @@ class XmlNode extends Object {
  * @return object XmlNode
  */
 	function &createNode($name = null, $value = null, $namespace = false) {
-		$node =& new XmlNode($name, $value, $namespace);
+		$node =new XmlNode($name, $value, $namespace);
 		$node->setParent($this);
 		return $node;
 	}
@@ -159,7 +159,7 @@ class XmlNode extends Object {
  * @return object XmlElement
  */
 	function &createElement($name = null, $value = null, $attributes = array(), $namespace = false) {
-		$element =& new XmlElement($name, $value, $attributes, $namespace);
+		$element =new XmlElement($name, $value, $attributes, $namespace);
 		$element->setParent($this);
 		return $element;
 	}
@@ -1395,7 +1395,7 @@ class XmlManager {
 		static $instance = array();
 
 		if (!$instance) {
-			$instance[0] =& new XmlManager();
+			$instance[0] =new XmlManager();
 		}
 		return $instance[0];
 	}

@@ -148,6 +148,7 @@ class ModelBehavior extends Object {
  * @access public
  * @return mixed
  */
+ /*
 	function dispatchMethod(&$model, $method, $params = array()) {
 		if (empty($params)) {
 			return $this->{$method}($model);
@@ -170,7 +171,7 @@ class ModelBehavior extends Object {
 				return call_user_func_array(array(&$this, $method), $params);
 			break;
 		}
-	}
+	}*/
 /**
  * If $model's whitelist property is non-empty, $field will be added to it.
  * Note: this method should *only* be used in beforeValidate or beforeSave to ensure
@@ -282,7 +283,7 @@ class BehaviorCollection extends Object {
 				if (PHP5) {
 					$this->{$name} = new $class;
 				} else {
-					$this->{$name} =& new $class;
+					$this->{$name} =new $class;
 				}
 				ClassRegistry::addObject($class, $this->{$name});
 				if (!empty($plugin)) {

@@ -26,7 +26,7 @@
 /**
  * Included libs
  */
-App::import('Core', array('ClassRegistry', 'Overloadable', 'Validation', 'Behavior', 'ConnectionManager', 'Set', 'String'));
+App::import('Core', array('ClassRegistry', 'Overloadable', 'Validation', 'Behavior', 'ConnectionManager', 'Set', 'CakeText'));
 /**
  * Object-relational mapper.
  *
@@ -1278,9 +1278,9 @@ class Model extends Overloadable {
 						if (empty($this->data[$this->alias][$this->primaryKey]) && $isUUID) {
 							if (array_key_exists($this->primaryKey, $this->data[$this->alias])) {
 								$j = array_search($this->primaryKey, $fields);
-								$values[$j] = String::uuid();
+								$values[$j] = CakeText::uuid();
 							} else {
-								list($fields[], $values[]) = array($this->primaryKey, String::uuid());
+								list($fields[], $values[]) = array($this->primaryKey, CakeText::uuid());
 							}
 						}
 						break;
@@ -1365,7 +1365,7 @@ class Model extends Overloadable {
 							$db->value($row)
 						);
 						if ($isUUID && $primaryAdded) {
-							$values[] = $db->value(String::uuid());
+							$values[] = $db->value(CakeText::uuid());
 						}
 						$values = implode(',', $values);
 						$newValues[] = "({$values})";
@@ -2130,7 +2130,7 @@ class Model extends Overloadable {
 				$list = array("{n}.{$this->alias}.{$this->primaryKey}", "{n}.{$this->alias}.{$this->displayField}", null);
 			} else {
 				if (!is_array($query['fields'])) {
-					$query['fields'] = String::tokenize($query['fields']);
+					$query['fields'] = CakeText::tokenize($query['fields']);
 				}
 
 				if (count($query['fields']) == 1) {

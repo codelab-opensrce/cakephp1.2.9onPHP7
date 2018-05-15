@@ -281,7 +281,7 @@ class Multibyte extends Object {
 		static $instance = array();
 
 		if (!$instance) {
-			$instance[0] =& new Multibyte();
+			$instance[0] =new Multibyte();
 		}
 		return $instance[0];
 	}
